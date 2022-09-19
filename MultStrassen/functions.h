@@ -6,8 +6,10 @@
 int **A;
 int **B;
 int **C;
+int **D;
+
 double strassenTime = 0.0;
-double multiNormal = 0.0;
+double multiPadraoTime = 0.0;
 
 
 void inicializaMatriz(int n);
@@ -161,7 +163,28 @@ int **strassenMulti(int **A, int **B, int n){
     clock_t end = clock();
     strassenTime += (double)(end - begin)/CLOCKS_PER_SEC;
     return C;
-
 }
     
+// Multiplicação de matrizes Padrão
+
+int **multiPadrao(int **A, int **B, int n){
+    printf("\n");
+
+    clock_t begin = clock();
+    int linha;
+    int coluna;
+    int i;
+    int somaprod;
+    int** D = alocaMatriz(n);
     
+    for(linha=0; linha<n; linha++){
+        for(coluna=0; coluna<n; coluna++){
+            somaprod=0;
+            for(i=0; i<n; i++) somaprod+= A[linha][i]*B[i][coluna];
+            D[linha][coluna]=somaprod;
+        }
+    }
+    clock_t end = clock();
+    multiPadraoTime += (double)(end - begin)/CLOCKS_PER_SEC;
+    return D;
+}
