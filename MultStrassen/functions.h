@@ -6,6 +6,9 @@
 int **A;
 int **B;
 int **C;
+double strassenTime = 0.0;
+double multiNormal = 0.0;
+
 
 void inicializaMatriz(int n);
 int **alocaMatriz(int n);
@@ -51,8 +54,8 @@ void inicializaMatriz(int n){
     // Vamos usar l => linha e c => coluna
     for(int l = 0; l < n; l++){
         for(int c = 0; c < n; c++){
-            A[l][c] = rand()%100;
-            B[l][c] = rand()%100;
+            A[l][c] = rand()%10;
+            B[l][c] = rand()%10;
         }
     }
 }
@@ -98,7 +101,9 @@ int **subtract(int **M1, int **M2, int n){
 }
 
 // Multiplicação de matrizes Strassen
+
 int **strassenMulti(int **A, int **B, int n){
+    clock_t begin = clock();
     int** C = alocaMatriz(n);
     int k = n/2;
 
@@ -152,7 +157,11 @@ int **strassenMulti(int **A, int **B, int n){
 		        C[k+i][k+j] = C22[i][j];
 		    }
 		}
-
-        return C;
     }
+    clock_t end = clock();
+    strassenTime += (double)(end - begin)/CLOCKS_PER_SEC;
+    return C;
+
 }
+    
+    

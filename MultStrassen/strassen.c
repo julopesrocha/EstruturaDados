@@ -17,6 +17,7 @@ int main(int argc, char const *argv[]){
 		C = strassenMulti(A, B, n);
 
 		printMatriz(C, n);
+    printf("Tempo para multiplicação de Strassen: %f\n", strassenTime);
 	}
 	else { exit(EXIT_SUCCESS); }
 
